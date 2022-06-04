@@ -28,6 +28,12 @@ class Pokemon{
     }
 
 
+    /**
+     * 
+     * @param {String} type1 
+     * @param {String} type2 
+     * @returns {Arrays}
+     */
     async searchDosTypes(type1, type2){
         let id = 0;
         const pokemons = []
@@ -41,34 +47,6 @@ class Pokemon{
         }
 
         return pokemons.length === 0 ? "Not Found" : pokemons
-
-    }
-
-
-    /**
-     * 
-     * @param {String} pokemon1 
-     * @param {String} pokemon2 
-     */
-    async searchDosTypesPokemon(pokemon1, pokemon2){
-
-        const typePok1 = await searchPokemonName(pokemon1);
-        const typePok2 = await searchPokemonName(pokemon2);
-
-        
-        const pokmURL1 = obtenerUrlPokemon(typePok1.types);
-        const pokmURL2 = obtenerUrlPokemon(typePok2.types);
-        
-        const pokemonsTypes = sinRepetidos([...pokmURL1, ...pokmURL2])
-        const result = [];
-
-        for (let i = 0; i < pokemonsTypes.length; i++) {
-            
-            const dt = await searchAllTypesPokemon(pokemonsTypes[i]);
-            result.push(...dt)
-        }
-
-        return result;
 
     }
 

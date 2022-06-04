@@ -25,7 +25,7 @@ router.get("/iguales/:type1/:type2", async (req, res)=>{
 router.get("/pokemon/:nameId", async (req, res)=>{
     const {nameId} = req.params;
     if(isNaN(nameId)){
-        const result = await pokemon.searchNameNumber(nameId);
+        const result = pokemon.searchNameNumber(nameId);
         res.json(result);
 
     }else{
@@ -42,10 +42,10 @@ router.get("/pokemones/typo-peso/", async (req, res)=>{
     res.json(ordernPokemos)
 })
 
-router.get("/existe/:id/:type", async (req, res)=>{
+router.get("/existe/:id/:type", (req, res)=>{
     const {id, type} = req.params;
 
-    const bool = await pokemon.existe(id, type);
+    const bool = pokemon.existe(id, type);
 
     res.json(bool);
 })
